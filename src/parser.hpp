@@ -1,7 +1,8 @@
 #pragma once
 
-#include "ppm.hpp"
 #include <string>
+
+#include "ppm.hpp"
 
 class Parser {
 public:

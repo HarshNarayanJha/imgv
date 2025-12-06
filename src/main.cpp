@@ -1,12 +1,10 @@
-#include "parser.hpp"
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Window/VideoMode.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "parser.hpp"
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -30,22 +28,24 @@ int main(int argc, char *argv[]) {
   sf::RenderWindow window(sf::VideoMode({image->width, image->height}), "imgv",
                           sf::Style::None);
 
+  // center the window
   window.setPosition(sf::Vector2i(
       sf::VideoMode::getDesktopMode().size.x * 0.5 - window.getSize().x * 0.5,
       sf::VideoMode::getDesktopMode().size.y * 0.5 - window.getSize().y * 0.5));
   window.setVerticalSyncEnabled(true);
 
-  std::vector<sf::CircleShape> pixelShapes(image->pixels.size());
+  std::vector<sf::RectangleShape> pixelShapes(image->width * image->height);
 
   for (int i = 0; i < image->width; i++) {
     for (int j = 0; j < image->height; j++) {
-      const auto &p = image->pixels[i * image->height + j];
+      const auto &p = image->pixels[j * image->width + i];
 
-      sf::CircleShape px(1.0f);
+      sf::RectangleShape px({1.0f, 1.0f});
       // std::cout << p.r << ' ' << p.g << ' ' << p.b << std::endl;
+
       px.setFillColor(sf::Color(p.r, p.g, p.b, 255));
       px.setPosition(sf::Vector2f(i, j));
-      pixelShapes[i * image->height + j] = px;
+      pixelShapes[j * image->width + i] = px;
     }
   }
 

@@ -9,8 +9,8 @@ struct Color {
 };
 
 struct PPM {
-  int width;
-  int height;
-  int maxColor;
+  unsigned int width;
+  unsigned int height;
+  unsigned int maxColor;
   std::vector<Color> pixels;
 };

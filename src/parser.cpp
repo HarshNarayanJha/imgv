@@ -27,7 +27,7 @@ PPM *Parser::parse() {
     return nullptr;
   }
 
-  int width, height, maxColor;
+  unsigned int width, height, maxColor;
 
   // read in the width and height
   std::getline(file, line);
@@ -51,6 +51,9 @@ PPM *Parser::parse() {
 
   std::vector<Color> pixels;
 
+  std::cout << "Parsing Image Header Done: " << width << "x" << height
+            << std::endl;
+
   while (std::getline(file, line)) {
     if (line.starts_with("#")) {
       continue;
@@ -58,9 +61,17 @@ PPM *Parser::parse() {
 
     std::stringstream ss(line);
     Color pixel;
-    ss >> pixel.r;
-    ss >> pixel.g;
-    ss >> pixel.b;
+    int r, g, b;
+    ss >> r;
+    ss >> g;
+    ss >> b;
+
+    // std::cout << "Parsing Pixel: " << r << " " << g << " " << b << std::endl;
+
+    pixel.r = (r * 255) / maxColor;
+    pixel.g = (g * 255) / maxColor;
+    pixel.b = (b * 255) / maxColor;
+
     pixels.push_back(pixel);
   }
 

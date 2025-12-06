@@ -9,12 +9,19 @@ find_package(SFML REQUIRED COMPONENTS
     Graphics
     Window
     System
-    CONFIG
 )
 
-add_executable(imgv src/main.cpp)
+add_executable(imgv
+    src/main.cpp
+    src/parser.cpp
+)
+
+target_include_directories(imgv PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
 target_compile_features(imgv PRIVATE cxx_std_23)
 
-target_link_libraries(imgv PRIVATE SFML::Window)
-target_link_libraries(imgv PRIVATE SFML::Graphics)
-target_link_libraries(imgv PRIVATE SFML::System)
+target_link_libraries(imgv PRIVATE
+    SFML::Window
+    SFML::Graphics
+    SFML::System
+)

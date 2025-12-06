@@ -1,0 +1,19 @@
+// Project tasks configuration. See https://zed.dev/docs/tasks for documentation.
+//
+// Example:
+[
+  {
+    "label": "CMake Configure",
+    "command": "cmake",
+    "args": ["-B", "build"]
+  },
+  {
+    "label": "CMake Build",
+    "command": "cmake",
+    "args": ["--build", "build"]
+  },
+  {
+    "label": "Configure, Build and Run",
+    "command": "cmake -B build && cmake --build build && ./build/bin/imgv"
+  }
+]

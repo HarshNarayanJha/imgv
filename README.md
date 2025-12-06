@@ -1,6 +1,6 @@
 # imgv
 
-A simple image viewer written in C++ and SFML
+A simple image viewer written in C++ and SFML.
 
 ## PPM File Format
 
@@ -10,4 +10,17 @@ P6
 255
 <pixel data in binary>
 ...
+```
+
+## Compilation
+
+```bash
+cmake -B build
+cmake --build build
+```
+
+## Usage
+
+```bash
+./build/bin/imgv <image.ppm>
 ```
